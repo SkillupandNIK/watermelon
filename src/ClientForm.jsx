@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+//import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
 
 class ClientForm extends Component {
   state = { nouveauClient: "" };
@@ -19,13 +21,13 @@ class ClientForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <input
+        <TextField
           value={this.state.nouveauClient}
           onChange={this.handleChange}
-          type="text"
+          
           placeholder="Ajouter Client"
         />
-        <button> Confirm </button>
+        <button> Confirmer </button>
       </form>
     );
   }

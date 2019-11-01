@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Client from "./Client";
 import ClientForm from "./ClientForm";
+import Carte from "./Carte";
+import CarteForm from "./CarteForm";
 
 import "./styles.css";
 
@@ -11,7 +13,9 @@ class App extends React.Component {
       { id: 1, nom: "haha" },
       { id: 2, nom: "hihi" },
       { id: 3, nom: "hoho" }
-    ]
+    ],
+
+    cartes: [{ nom: "coucou", num: 1234567890, exp: new Date().getTime}]
   };
 
   handleDelete = id => {
@@ -21,11 +25,18 @@ class App extends React.Component {
     this.setState({ clients });
   };
 
-  handleAdd = client => {
+  handleAddClient = client => {
     const clients = [...this.state.clients];
     clients.push(client);
 
     this.setState({ clients });
+  };
+
+  handleAddCarte = carte => {
+    const cartes = [...this.state.cartes];
+    cartes.push(carte);
+
+    this.setState({ cartes });
   };
 
   render() {
@@ -40,8 +51,12 @@ class App extends React.Component {
             <Client details={client} onDelete={this.handleDelete} />
           ))}
         </ul>
+        <ClientForm onClientAdd={this.handleAddClient} />
 
-        <ClientForm onClientAdd={this.handleAdd} />
+        {this.state.cartes.map(carte => (
+          <Carte details={carte} />
+        ))}
+        <CarteForm onCarteAdd={this.handleAddCarte} />
       </div>
     );
   }
